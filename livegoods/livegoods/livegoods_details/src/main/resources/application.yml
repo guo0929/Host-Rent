@@ -1,0 +1,28 @@
+server:
+  port: 9004
+spring:
+  profiles:
+    active: mongo,commons
+  application:
+    name: livegoods-details
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.151.240:3306/lcn?serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  redis: # 提供Redis配置
+    host: 192.168.89.142
+    port: 6379
+    database: 0
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.89.142:8761/eureka/
+  instance:
+    prefer-ip-address: true
+livegoods:
+  details:
+    imgMiddle: 'group1/M00/00/00/'
+tx-lcn:
+  client:
+    manager-address: 192.168.89.142:8070

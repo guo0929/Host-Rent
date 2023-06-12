@@ -1,0 +1,13 @@
+server:
+  port: 9006
+spring:
+  application:
+    name: livegoods-buy-time
+  profiles:
+    active: mongo
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://192.168.89.142:8761/eureka/

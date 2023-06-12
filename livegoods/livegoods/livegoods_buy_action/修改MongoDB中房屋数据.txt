@@ -1,0 +1,1 @@
+db.houses.update({},{"$set":{"nums":1}},{"multi":true});

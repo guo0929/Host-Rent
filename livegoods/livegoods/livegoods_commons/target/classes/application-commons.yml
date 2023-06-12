@@ -1,0 +1,16 @@
+livegoods:
+  nginx:
+    server: http://192.168.89.142:8888/
+  house:
+    redisPrefix: 'livegoods:details::getHouseById'
+  amqp:
+    buyaction:
+      exchange: livegoods-buyaction
+      routingKey: buyaction
+      queueName: livegoods-buyaction-queue
+      exchangeType: topic
+    order:
+      exchange: livegoods-order
+      routingKey: order
+      queueName: livegoods-order-queue
+      exchangeType: topic

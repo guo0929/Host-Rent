@@ -1,0 +1,262 @@
+// 提供ES中的初始化房屋数据。
+// 正常工程中，应该有后台管理系统。管理系统新增房屋到MongoDB数据库。
+// 同步逻辑，同步数据到ES中。
+
+// ES中的数据类型
+{
+  "id":"主键",
+  "title":"标题",
+  "houseType":"房屋特征 17/19层 | 4室1厅 - 273.97 ㎡",
+  "price":"价格 <h3>130000</h3>",
+  "rentType":"租赁方式， 整租|合租等",
+  "img":"图片",
+  "city":"城市"
+}
+
+// 初始化索引
+PUT livegoods_houses
+{
+  "settings":{
+    "number_of_shards": 2,
+    "number_of_replicas":0
+  },
+  "mappings":{
+    "houses":{
+      "properties":{
+        "id":{
+          "type":"keyword"
+        },
+        "title":{
+          "type":"text",
+          "analyzer":"ik_max_word"
+        },
+        "houseType":{
+          "type":"text",
+          "analyzer":"ik_max_word"
+        },
+        "price":{
+          "type":"text",
+          "analyzer":"standard",
+          "fields":{
+            "kw":{
+              "type":"keyword"
+            }
+          }
+        },
+        "rentType":{
+          "type":"text",
+          "analyzer":"ik_smart"
+        },
+        "img":{
+          "type":"keyword"
+        },
+        "city":{
+          "type":"keyword"
+        }
+      }
+    }
+  }
+}
+
+// MongoDB中房屋的数据结构， 一定有主键_id
+{
+  "title":"标题",
+  "houseType":"房屋面积 273.97 ㎡",
+  "info": {
+    years: "建造年份 2002年",
+    type: "庭室  4室1厅",
+    level: "楼层  17/19层",
+    style: "装修  精装性",
+    orientation: "朝向  朝南"
+  },
+  "price":"价格 130000",
+  "rentType":"租赁方式， 整租|合租等",
+  "imgs":["图片1","图片2","图片3","图片4"],
+  "city":"城市"
+}
+
+// 初始化MongoDB房屋数据
+db.houses.insertMany([
+  {
+    "title":"北京豪宅",
+      "houseType":"273.97 ㎡",
+      "info": {
+        years: "2002年",
+        type: "5室3厅1厨3卫",
+        level: "3/3层",
+        style: "豪华装修",
+        orientation: "南北通透"
+      },
+      "price":"40000",
+      "rentType":"整租",
+      "imgs":["group1/M00/00/00/wKhZjl9i2CaAVXQlAADzZuYOH74914.jpg","wKhZjl9i2CaAVJJVAACj6oiIMnY124.jpg","wKhZjl9i2CaARmbEAADZCwsgDr8739.jpg","wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg","wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg","wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg"],
+      "city":"北京"
+  },
+  {
+    "title":"北京叠拼",
+      "houseType":"173.67 ㎡",
+      "info": {
+        years: "2005年",
+        type: "3室2厅1厨2卫",
+        level: "1-2/4层",
+        style: "精装修",
+        orientation: "南北通透"
+      },
+      "price":"12000",
+      "rentType":"整租",
+      "imgs":["wKhZjl9i2CaAVXQlAADzZuYOH74914.jpg","wKhZjl9i2CaAVJJVAACj6oiIMnY124.jpg","wKhZjl9i2CaARmbEAADZCwsgDr8739.jpg","wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg","wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg","wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg"],
+      "city":"北京"
+  },
+  {
+    "title":"北京公寓",
+      "houseType":"103.67 ㎡",
+      "info": {
+        years: "2004年",
+        type: "3室1厅1厨1卫",
+        level: "14/18层",
+        style: "精装修",
+        orientation: "南北通透"
+      },
+      "price":"9000",
+      "rentType":"整租",
+      "imgs":["wKhZjl9i2CaAVXQlAADzZuYOH74914.jpg","wKhZjl9i2CaAVJJVAACj6oiIMnY124.jpg","wKhZjl9i2CaARmbEAADZCwsgDr8739.jpg","wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg","wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg","wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg"],
+      "city":"北京"
+  },
+  {
+    "title":"北京民房",
+      "houseType":"86.67 ㎡",
+      "info": {
+        years: "2004年",
+        type: "2室1厅1厨1卫",
+        level: "4/6层",
+        style: "简单装修",
+        orientation: "朝南"
+      },
+      "price":"6000",
+      "rentType":"整租",
+      "imgs":["wKhZjl9i2CaAVXQlAADzZuYOH74914.jpg","wKhZjl9i2CaAVJJVAACj6oiIMnY124.jpg","wKhZjl9i2CaARmbEAADZCwsgDr8739.jpg","wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg","wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg","wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg"],
+      "city":"北京"
+  },
+  {
+    "title":"北京合租公寓",
+      "houseType":"24 ㎡",
+      "info": {
+        years: "2004年",
+        type: "1室0厅",
+        level: "14/18层",
+        style: "精装修",
+        orientation: "朝南"
+      },
+      "price":"4000",
+      "rentType":"合租",
+      "imgs":["wKhZjl9i2CaAVXQlAADzZuYOH74914.jpg","wKhZjl9i2CaAVJJVAACj6oiIMnY124.jpg","wKhZjl9i2CaARmbEAADZCwsgDr8739.jpg","wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg","wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg","wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg"],
+      "city":"北京"
+  },
+  {
+    "title":"北京自建房",
+      "houseType":"26 ㎡",
+      "info": {
+        years: "2004年",
+        type: "1室0厅",
+        level: "2/4层",
+        style: "简单装修",
+        orientation: "朝东"
+      },
+      "price":"1000",
+      "rentType":"整租",
+      "imgs":["wKhZjl9i2CaAVXQlAADzZuYOH74914.jpg","wKhZjl9i2CaAVJJVAACj6oiIMnY124.jpg","wKhZjl9i2CaARmbEAADZCwsgDr8739.jpg","wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg","wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg","wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg"],
+      "city":"北京"
+  },{
+        "title":"上海豪宅",
+          "houseType":"273.97 ㎡",
+          "info": {
+            years: "2002年",
+            type: "5室3厅1厨3卫",
+            level: "3/3层",
+            style: "豪华装修",
+            orientation: "南北通透"
+          },
+          "price":"40000",
+          "rentType":"整租",
+          "imgs":["wKhZjl9i2CaAVXQlAADzZuYOH74914.jpg","wKhZjl9i2CaAVJJVAACj6oiIMnY124.jpg","wKhZjl9i2CaARmbEAADZCwsgDr8739.jpg","wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg","wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg","wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg"],
+          "city":"上海"
+      },
+      {
+        "title":"上海叠拼",
+          "houseType":"173.67 ㎡",
+          "info": {
+            years: "2005年",
+            type: "3室2厅1厨2卫",
+            level: "1-2/4层",
+            style: "精装修",
+            orientation: "南北通透"
+          },
+          "price":"12000",
+          "rentType":"整租",
+          "imgs":["wKhZjl9i2CaAVXQlAADzZuYOH74914.jpg","wKhZjl9i2CaAVJJVAACj6oiIMnY124.jpg","wKhZjl9i2CaARmbEAADZCwsgDr8739.jpg","wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg","wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg","wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg"],
+          "city":"上海"
+      },
+      {
+        "title":"上海公寓",
+          "houseType":"103.67 ㎡",
+          "info": {
+            years: "2004年",
+            type: "3室1厅1厨1卫",
+            level: "14/18层",
+            style: "精装修",
+            orientation: "南北通透"
+          },
+          "price":"9000",
+          "rentType":"整租",
+          "imgs":["wKhZjl9i2CaAVXQlAADzZuYOH74914.jpg","wKhZjl9i2CaAVJJVAACj6oiIMnY124.jpg","wKhZjl9i2CaARmbEAADZCwsgDr8739.jpg","wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg","wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg","wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg"],
+          "city":"上海"
+      },
+      {
+        "title":"上海民房",
+          "houseType":"86.67 ㎡",
+          "info": {
+            years: "2004年",
+            type: "2室1厅1厨1卫",
+            level: "4/6层",
+            style: "简单装修",
+            orientation: "朝南"
+          },
+          "price":"6000",
+          "rentType":"整租",
+          "imgs":["wKhZjl9i2CaAVXQlAADzZuYOH74914.jpg","wKhZjl9i2CaAVJJVAACj6oiIMnY124.jpg","wKhZjl9i2CaARmbEAADZCwsgDr8739.jpg","wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg","wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg","wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg"],
+          "city":"上海"
+      },
+      {
+        "title":"上海合租公寓",
+          "houseType":"24 ㎡",
+          "info": {
+            years: "2004年",
+            type: "1室0厅",
+            level: "14/18层",
+            style: "精装修",
+            orientation: "朝南"
+          },
+          "price":"4000",
+          "rentType":"合租",
+          "imgs":["wKhZjl9i2CaAVXQlAADzZuYOH74914.jpg","wKhZjl9i2CaAVJJVAACj6oiIMnY124.jpg","wKhZjl9i2CaARmbEAADZCwsgDr8739.jpg","wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg","wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg","wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg"],
+          "city":"上海"
+      },
+      {
+        "title":"上海自建房",
+          "houseType":"26 ㎡",
+          "info": {
+            years: "2004年",
+            type: "1室0厅",
+            level: "2/4层",
+            style: "简单装修",
+            orientation: "朝东"
+          },
+          "price":"1000",
+          "rentType":"整租",
+          "imgs":["wKhZjl9i2CaAVXQlAADzZuYOH74914.jpg","wKhZjl9i2CaAVJJVAACj6oiIMnY124.jpg","wKhZjl9i2CaARmbEAADZCwsgDr8739.jpg","wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg","wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg","wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg"],
+          "city":"上海"
+      }
+]);
+
+// 初始化ES数据，数据来源于MongoDB数据库。
+// 使用初始化init逻辑，实现数据初始化。

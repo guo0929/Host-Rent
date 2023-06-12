@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="livegoods_details" />
+        <module name="livegoods_message_consumer_order" />
+        <module name="livegoods_pojo_item" />
+        <module name="livegoods_search" />
+        <module name="livegoods_feedback" />
+        <module name="livegoods_pojo_feedback" />
+        <module name="livegoods_pojo_houses" />
+        <module name="livegoods_dao_mongodb" />
+        <module name="livegoods_data_elasticsearch" />
+        <module name="livegoods_banner" />
+        <module name="livegoods_gateway" />
+        <module name="livegoods_data_redis" />
+        <module name="livegoods_commons" />
+        <module name="livegoods_pojo_comment" />
+        <module name="livegoods_message_publisher" />
+        <module name="livegoods_buy_time" />
+        <module name="livegoods_recommendation" />
+        <module name="livegoods_order" />
+        <module name="livegoods_message_consumer_buyaction" />
+        <module name="livegoods_hot_product" />
+        <module name="livegoods_buy_action" />
+        <module name="livegoods_lcn_tm" />
+        <module name="livegoods_eureka" />
+        <module name="livegoods_pojo_order" />
+        <module name="livegoods_passport" />
+        <module name="livegoods_pojo_passport" />
+        <module name="livegoods_comments" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

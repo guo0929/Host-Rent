@@ -1,0 +1,75 @@
+server:
+  port: 4006
+spring:
+  application:
+    name: livegoods-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      routes:
+        # 定义banner的路由
+        - id: banner
+          uri: lb://livegoods-banner
+          predicates:
+            - Path=/banner
+        - id: recommendation
+          uri: lb://livegoods-recommendation
+          predicates:
+            - Path=/recommendation
+            - Query=city # 请求参数中必须包含city。
+        - id: hotproduct
+          uri: lb://livegoods-hot-product
+          predicates:
+            - Path=/hotProduct
+            - Query=city
+        - id: search
+          uri: lb://livegoods-search
+          predicates:
+            - Path=/search
+            - Query=city
+            - Query=content
+            - Query=page
+        - id: details
+          uri: lb://livegoods-details
+          predicates:
+            - Path=/details
+            - Query=id
+        - id: comments
+          uri: lb://livegoods-comments
+          predicates:
+            - Path=/comment
+            - Query=id
+            - Query=page
+        - id: buytime
+          uri: lb://livegoods-buy-time
+          predicates:
+            - Path=/buytime
+            - Query=id
+        - id: passport
+          uri: lb://livegoods-passport
+          predicates:
+            - Path=/sendyzm,/login
+        - id: buyaction
+          uri: lb://livegoods-buy-action
+          predicates:
+            - Path=/buyaction
+            - Query=id
+            - Query=user
+        - id: order
+          uri: lb://livegoods-order
+          predicates:
+            - Path=/order
+            - Query=user
+        - id: feedback
+          uri: lb://livegoods-feedback
+          predicates:
+            - Path=/feelback
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://192.168.89.142:8761/eureka/

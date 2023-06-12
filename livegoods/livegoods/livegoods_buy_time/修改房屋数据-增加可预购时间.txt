@@ -1,0 +1,6 @@
+// 注意： MongoDB中存储的是格林尼治时间，需要按照北京时间-8小时保存数据。
+db.houses.update(
+    {"buytime":{"$exists":true}},
+    {"$set":{"buytime":new Date("2020-09-22 01:45:00.000")}},
+    {"multi":false}
+  );

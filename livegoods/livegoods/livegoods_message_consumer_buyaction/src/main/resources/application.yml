@@ -1,0 +1,16 @@
+livegoods:
+  lock:
+    buyAction: 'livegoods:buyaction:lock:key'
+spring:
+  application:
+    name: livegoods-consumer-buyaction
+  profiles:
+    active: commons
+  redis:
+    host: 192.168.89.142
+  rabbitmq:
+    host: 192.168.89.142
+    port: 5672
+    username: bjsxt
+    password: bjsxt
+    virtual-host: /

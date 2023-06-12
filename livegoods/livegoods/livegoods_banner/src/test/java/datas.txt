@@ -1,0 +1,8 @@
+db.banner.insertMany([
+  {"path":"group1/M00/00/00/wKhZjl9i2G-APtxwABLGyzFLLI0980.gif", "beginTime": new Date("2020-01-01 00:00:00.000"), "endTime": new Date("2020-10-01 23:59:59.000")},
+  {"path":"group1/M00/00/00/wKhZjl9i2G-AB8HPABS0Li3X3nE721.gif", "beginTime": new Date("2020-01-01 00:00:00.000"), "endTime": new Date("2020-10-01 23:59:59.000")},
+  {"path":"group1/M00/00/00/wKhZjl9i2G-AY7jHABHVEJUid8Y792.gif", "beginTime": new Date("2020-01-01 00:00:00.000"), "endTime": new Date("2020-10-01 23:59:59.000")},
+  {"path":"group1/M00/00/00/wKhZjl9i2CaAJqaAAACUlqaDUJs156.jpg", "beginTime": new Date("2020-01-01 00:00:00.000"), "endTime": new Date("2020-10-01 23:59:59.000")},
+  {"path":"group1/M00/00/00/wKhZjl9i2CaANGnQAADEWJ2H-q8973.jpg", "beginTime": new Date("2020-01-01 00:00:00.000"), "endTime": new Date("2020-10-01 23:59:59.000")},
+  {"path":"group1/M00/00/00/wKhZjl9i2G-AOnN3AADZCwsgDr8459.jpg", "beginTime": new Date("2020-09-18 00:00:00.000"), "endTime": new Date("2020-10-01 23:59:59.000")},
+]);

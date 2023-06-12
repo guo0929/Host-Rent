@@ -1,0 +1,19 @@
+server:
+  port: 9009
+spring:
+  application:
+    name: livegoods-buy-action
+  profiles:
+    active: commons
+  rabbitmq:
+    host: 192.168.89.142
+    port: 5672
+    virtual-host: /
+    username: bjsxt
+    password: bjsxt
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://192.168.89.142:8761/eureka/

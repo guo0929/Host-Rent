@@ -1,0 +1,10 @@
+db.comments.insertMany([
+  {"houseId":"5f6805a3781cc66048c1daa7", "username":"13512344321", "comment":"便宜、干净。非常好", "star":5 },
+  {"houseId":"5f6805a3781cc66048c1daa7", "username":"13512344322", "comment":"有点小贵", "star":4 },
+  {"houseId":"5f6805a3781cc66048c1daa7", "username":"13512344323", "comment":"差一点喝西北风过日子", "star":3 },
+  {"houseId":"5f6805a3781cc66048c1daa7", "username":"13512344324", "comment":"鄙视我等穷人。", "star":1 },
+  {"houseId":"5f6805a3781cc66048c1daa7", "username":"13512344325", "comment":"装修豪华，便宜，干净。", "star":5 },
+  {"houseId":"5f6805a3781cc66048c1daa7", "username":"13512344326", "comment":"一般般，没有上海的别墅漂亮", "star":3 },
+  {"houseId":"5f6805a3781cc66048c1daa7", "username":"13512344327", "comment":"租不起，要不是结婚，这辈子享受不了", "star":2 },
+  {"houseId":"5f6805a3781cc66048c1daa7", "username":"13512344328", "comment":"以后每次结婚都这里了。", "star":5 }
+]);

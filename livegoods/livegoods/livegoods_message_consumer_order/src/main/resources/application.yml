@@ -1,0 +1,30 @@
+#server:
+#  port: 9010
+spring:
+  application:
+    name: livegoods-consumer-order
+  profiles:
+    active: commons
+  redis:
+    host: 192.168.89.142
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.151.240:3306/lcn?serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  rabbitmq:
+    virtual-host: /
+    host: 192.168.89.142
+    port: 5672
+    username: bjsxt
+    password: bjsxt
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://192.168.89.142:8761/eureka/
+tx-lcn:
+  client:
+    manager-address: 192.168.89.142:8070
+    chain-level: 5

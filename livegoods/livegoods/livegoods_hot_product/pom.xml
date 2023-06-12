@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>livegoods</artifactId>
+        <groupId>com.livegoods</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>livegoods_hot_product</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.livegoods</groupId>
+            <artifactId>livegoods_dao_mongodb</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.livegoods</groupId>
+            <artifactId>livegoods_commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.livegoods</groupId>
+            <artifactId>livegoods_pojo_item</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.2</version>
+                <configuration>
+                    <!-- FROM -->
+                    <baseImage>openjdk:8</baseImage>
+                    <imageName>livegoods/hotproduct:1.0</imageName>
+                    <dockerHost>http://192.168.89.142:2375</dockerHost>
+                    <!-- ADD -->
+                    <resources>
+                        <resource><!-- 复制到容器中的文件，命名和本地文件命名一致。 -->
+                            <!-- 复制到容器中的什么位置？ -->
+                            <targetPath>/</targetPath>
+                            <!-- 本地文件所处目录 -->
+                            <directory>${project.build.directory}</directory>
+                            <!-- 本地文件的名称  -->
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <!-- ENTRYPOINT -->
+                    <entryPoint>["java","-jar","${project.build.finalName}.jar"]</entryPoint>
+                    <exposes>
+                        <expose>9002</expose>
+                    </exposes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

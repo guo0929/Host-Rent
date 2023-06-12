@@ -1,0 +1,11 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: livegoods-eureka
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+  instance:
+    prefer-ip-address: true # 在注册服务的时候，优先选择IP，不是主机名。
